@@ -1,4 +1,4 @@
-export interface Test { 
+export interface ExpenseEntry { 
   id: number; 
   item: string; 
   amount: number; 
