@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Pipe Transformation</h1>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <td>Data Type</td>
+        <td>Using Pipe</td>
+        <td>Without Pipe</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Custom Object</td>
+        <td>{{user}}</td>
+        <td>{{user | userName | uppercase}}</td>
+      </tr>
+      <tr>
+        <td>Custom Object With Params</td>
+        <td>{{user}}</td>
+        <td>{{user | userName : true}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
