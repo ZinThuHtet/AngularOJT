@@ -1,17 +1,72 @@
 <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Number</mat-label>
-    <input type="text"
-           placeholder="Pick one"
-           aria-label="Number"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+<mat-card>
+  <mat-card-title>
+    Form
+  </mat-card-title>
+  <form [formGroup]="requiredForm" class="example-form">
+    <mat-card-content fxLayout="column">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Number</mat-label>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput type="email" placeholder="E-Mail" name="email" id="email" formControlName="email"
+          email>
+        <mat-error *ngIf="requiredForm.controls.email.hasError('required')">Email can't be blank.</mat-error>
+        <mat-error *ngIf="requiredForm.controls.email.hasError('email')">Email format is invalid.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </mat-card-content>
+    <button mat-raised-button color="primary"
+      matBadge="8" matBadgePosition="before" matBadgeColor="accent">
+      Action
+    </button>
+    <button mat-stroked-button color="accent">Accept</button>
+  </form>
+</mat-card>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource"> 
+     <ng-container matColumnDef="item">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" style="text-align: left"> {{element.item}} </mat-cell>
+     </ng-container>
+
+     <ng-container matColumnDef="amount">
+        <mat-header-cell mat-header-cell *matHeaderCellDef > Amount </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" style="text-align: left"> {{element.amount}} </mat-cell>
+     </ng-container>
+
+     <ng-container matColumnDef="category">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" style="text-align: left"> {{element.category}} </mat-cell>
+     </ng-container>
+
+     <ng-container matColumnDef="location">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" style="text-align:left"> {{element.location}} </mat-cell>
+     </ng-container>
+
+     <ng-container matColumnDef="spendOn">
+        <mat-header-cell mat-header-cell *matHeaderCellDef> Spend On </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element" style="text-align: left"> {{element.spendOn}} </mat-cell>
+     </ng-container>
+
+     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+</div>

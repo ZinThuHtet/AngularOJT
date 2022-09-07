@@ -1,15 +1,26 @@
 import { Component } from '@angular/core';
-import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-
+import { FormGroup, FormControl, Validators, FormBuilder  } from '@angular/forms'
+import { ExpenseEntry } from './interface/expense-entry';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+  
 export class AppComponent {
+  displayedColumns: string[] = ['item', 'amount', 'category', 'location', 'spendOn'];
+
+  dataSource = new MatTableDataSource < ExpenseEntry >(lists) ;
+
   myControl = new FormControl('');
+
+  public requiredForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email])
+  });
+
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions!: Observable<string[]>;
 
@@ -26,3 +37,11 @@ export class AppComponent {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 }
+
+const lists: ExpenseEntry[] = [{
+  item: "Pizza",
+  amount: 21,
+  category: "Food",
+  location: "Zomato",
+  spendOn: new Date(2020, 6, 1, 10, 10, 10)
+}];
