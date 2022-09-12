@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { InputComponent } from './input/input.component';
 import { ListComponent } from './list/list.component';
 import { MessageRepository } from './resources/message.resources';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InputComponent,
-    ListComponent
+    ListComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
