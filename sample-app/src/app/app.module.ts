@@ -11,13 +11,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './pages/login/login.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookListComponent } from './pages/book-list/book-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    LoginComponent
+    LoginComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +29,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularMaterialImportsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'book-list', component: BookListComponent },
     ])
   ],
   providers: [],
